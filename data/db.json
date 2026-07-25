@@ -1,0 +1,268 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Verona Luxe Canvas",
+      "category": "abstract",
+      "type": "Textured Canvas",
+      "pricePKR": 28500,
+      "rating": 4.8,
+      "image": "/shop/image11.jpg",
+      "desc": "Refresh and transform your interior space with premium museum-grade artwork. Handcrafted archival canvas featuring high-definition textures and rich fade-resistant colors.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p2",
+      "name": "Nova Line Framed Art",
+      "category": "modern",
+      "type": "Framed Canvas",
+      "pricePKR": 32000,
+      "rating": 4.9,
+      "image": "/shop/image 22.jpg",
+      "desc": "Modern geometric composition crafted for luxury interior walls, finished with a sleek designer border.",
+      "discountPercent": 20
+    },
+    {
+      "id": "p3",
+      "name": "Vero Modular Masterpiece",
+      "category": "abstract",
+      "type": "Canvas Painting",
+      "pricePKR": 29500,
+      "rating": 4.7,
+      "image": "/shop/image 33.jpg",
+      "desc": "High-contrast abstract brushwork designed to create a bold aesthetic impact in dining areas and living rooms.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p4",
+      "name": "Divine Calligraphy",
+      "category": "islamic",
+      "type": "Gold Leaf Canvas",
+      "pricePKR": 36000,
+      "rating": 4.9,
+      "image": "/shop/image 44.jpg",
+      "desc": "Beautiful hand-drawn calligraphy with authentic gold leaf gilding, set on an antique textured backdrop.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p5",
+      "name": "Celestial Modern",
+      "category": "modern",
+      "type": "Acrylic Glass Art",
+      "pricePKR": 42000,
+      "rating": 4.6,
+      "image": "/shop/image 55.jpg",
+      "desc": "High-gloss crystal clear acrylic backing highlighting vibrant stellar hues and sleek geometric silhouettes.",
+      "discountPercent": 4
+    },
+    {
+      "id": "p6",
+      "name": "Aura of Minimal",
+      "category": "minimalist",
+      "type": "Textured Wall Art",
+      "pricePKR": 38000,
+      "rating": 4.8,
+      "image": "/shop/image11.jpg",
+      "desc": "Fine gesso textures creating subtle shadows. Perfect choice for quiet spaces and neutral-colored bedrooms.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p7",
+      "name": "Golden Forest Horizon",
+      "category": "nature",
+      "type": "Oil Paint Canvas",
+      "pricePKR": 34500,
+      "rating": 4.9,
+      "image": "/shop/image 22.jpg",
+      "desc": "A sunset horizon shining through a dense abstract forest landscape. Finished with textured oil glazes.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p8",
+      "name": "Sublime Calligraphy",
+      "category": "islamic",
+      "type": "Wood Framed Canvas",
+      "pricePKR": 39000,
+      "rating": 5,
+      "image": "/shop/image 33.jpg",
+      "desc": "An elegant modern presentation of Islamic calligraphy housed in an premium custom solid walnut wood frame.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p9",
+      "name": "Ethereal Harmony",
+      "category": "abstract",
+      "type": "Mixed Media Art",
+      "pricePKR": 31000,
+      "rating": 4.7,
+      "image": "/shop/image 44.jpg",
+      "desc": "Layered textures combining natural linen fibres, premium metallic paint drops, and soft sand pigments.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p10",
+      "name": "Nordic Horizon Minimal",
+      "category": "minimalist",
+      "type": "Textured Linen",
+      "pricePKR": 27000,
+      "rating": 4.8,
+      "image": "/shop/image 55.jpg",
+      "desc": "A quiet sunset study capturing pure light over a quiet horizon, printed on luxury organic cotton-linen.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p11",
+      "name": "Midnight Bloom",
+      "category": "nature",
+      "type": "Botanical Canvas",
+      "pricePKR": 33000,
+      "rating": 4.9,
+      "image": "/shop/image11.jpg",
+      "desc": "Deep indigo hues highlighting delicate silver-veined botanical contours. A sophisticated study of flora.",
+      "discountPercent": 0
+    },
+    {
+      "id": "p12",
+      "name": "Geometric Monolith",
+      "category": "modern",
+      "type": "Architectural Print",
+      "pricePKR": 41000,
+      "rating": 4.8,
+      "image": "/shop/image 22.jpg",
+      "desc": "Dramatic high-contrast light cast upon concrete facades. Perfect for brutalist and industrial decors.",
+      "discountPercent": 0
+    }
+  ],
+  "orders": [],
+  "heroSlides": [
+    {
+      "image": "/slider/main1.png",
+      "badge": "EXCLUSIVE CANVAS & FRAMED ART",
+      "titleLine1": "Discover",
+      "pillText": "Timeless",
+      "titleLine2": "Art for Every Space",
+      "subtitle": "Transform your home with stylish, durable, and comfortable wall art designed to elevate your living experience.",
+      "cta": "Shop Now",
+      "linkText": "Explore Collections",
+      "targetCategory": "all"
+    },
+    {
+      "image": "/slider/main 2.png",
+      "badge": "CURATED ABSTRACT COLLECTION",
+      "titleLine1": "Explore",
+      "pillText": "Abstract",
+      "titleLine2": "Masterpieces & Textures",
+      "subtitle": "Elevate modern interiors with bold brushstrokes, golden leaf accents, and expressive abstract forms.",
+      "cta": "View Abstract",
+      "linkText": "Explore Gallery",
+      "targetCategory": "abstract"
+    },
+    {
+      "image": "/slider/main 3.png",
+      "badge": "MODERN & GEOMETRIC HARMONY",
+      "titleLine1": "Redefine",
+      "pillText": "Modern",
+      "titleLine2": "Luxury Living Decor",
+      "subtitle": "Minimalist geometric compositions and contemporary aesthetic framed prints for sophisticated rooms.",
+      "cta": "Shop Modern",
+      "linkText": "See Details",
+      "targetCategory": "modern"
+    },
+    {
+      "image": "/slider/main 4.png",
+      "badge": "NATURE & LANDSCAPE CANVAS",
+      "titleLine1": "Bring",
+      "pillText": "Nature",
+      "titleLine2": "Into Your Home",
+      "subtitle": "Serene golden forests, mountain vistas, and calming organic landscape artwork crafted for tranquil spaces.",
+      "cta": "Explore Nature",
+      "linkText": "View Paintings",
+      "targetCategory": "nature"
+    },
+    {
+      "image": "/slider/main 5.png",
+      "badge": "HERITAGE & ISLAMIC CALLIGRAPHY",
+      "titleLine1": "Celebrate",
+      "pillText": "Islamic",
+      "titleLine2": "Calligraphy & Heritage",
+      "subtitle": "Intricate gold leaf calligraphy and sacred architectural artwork presented on museum-grade framed canvas.",
+      "cta": "Shop Islamic Art",
+      "linkText": "Explore Heritage",
+      "targetCategory": "islamic"
+    }
+  ],
+  "teamMembers": [
+    {
+      "id": "t1",
+      "name": "Eleanor Vance",
+      "role": "Head of Art Curation",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+      "tilt": "-rotate-3 hover:rotate-0 origin-bottom-left"
+    },
+    {
+      "id": "t2",
+      "name": "Ralph Edwards",
+      "role": "Master Canvas Artisan",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+      "tilt": "rotate-1 hover:rotate-0 origin-bottom"
+    },
+    {
+      "id": "t3",
+      "name": "Arlene McCoy",
+      "role": "Lead Interior Stylist",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
+      "tilt": "rotate-4 hover:rotate-0 origin-bottom-right"
+    }
+  ],
+  "globalDiscountPercent": 10,
+  "instaPosts": [
+    {
+      "id": 1,
+      "src": "/slider/main1.png",
+      "handle": "@luxe_interiors_pk",
+      "likes": "1.8k",
+      "caption": "Living room transformation with Galleria canvas",
+      "tilt": "-rotate-3"
+    },
+    {
+      "id": 2,
+      "src": "/collection/img1.jpg",
+      "handle": "@art_collector_lahore",
+      "likes": "2.4k",
+      "caption": "Archival fluid art framed in solid wood",
+      "tilt": "rotate-2"
+    },
+    {
+      "id": 3,
+      "src": "/slider/main 2.png",
+      "handle": "@modern.home.art",
+      "likes": "3.1k",
+      "caption": "Gallery wall arrangement in master suite",
+      "tilt": "-rotate-2"
+    },
+    {
+      "id": 4,
+      "src": "/collection/img3.jpg",
+      "handle": "@interior_stylist_isb",
+      "likes": "1.5k",
+      "caption": "Classical botanical masterpiece canvas",
+      "tilt": "rotate-3"
+    },
+    {
+      "id": 5,
+      "src": "/slider/main 3.png",
+      "handle": "@galleria_living",
+      "likes": "4.2k",
+      "caption": "Exhibition showcase at Galleria Studio",
+      "tilt": "-rotate-3"
+    },
+    {
+      "id": 6,
+      "src": "/collection/img5.jpg",
+      "handle": "@design_space_khi",
+      "likes": "2.9k",
+      "caption": "Custom textured oil artwork installation",
+      "tilt": "rotate-2"
+    }
+  ]
+}
