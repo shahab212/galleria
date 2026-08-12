@@ -2,6 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
+import ScrollReveal from './ScrollReveal';
+import CharReveal from './CharReveal';
+import LightBeamButton from './LightBeamButton';
 
 interface TeamMember {
   id: string;
@@ -56,13 +59,14 @@ export default function About({ isDarkMode, teamMembers }: AboutProps) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Bold Headline & Descriptions */}
-          <div className="md:col-span-4 flex flex-col justify-center space-y-6 sm:space-y-8">
+          <ScrollReveal animation="fade-right" className="md:col-span-4 flex flex-col justify-center space-y-6 sm:space-y-8">
             <h2
-              className={`font-sans font-black text-6xl sm:text-7xl lg:text-[84px] tracking-tighter leading-[0.8] uppercase transition-colors duration-300 ${
+              className={`font-sans font-black text-5xl sm:text-7xl lg:text-[84px] tracking-tighter leading-[0.8] uppercase transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-[#0C1623]'
               }`}
             >
-              ABOUT<br />US
+              <CharReveal text="ABOUT" /><br />
+              <CharReveal text="US" delay={100} />
             </h2>
             
             <div className="space-y-3.5">
@@ -77,10 +81,10 @@ export default function About({ isDarkMode, teamMembers }: AboutProps) {
                 Modern Elegance: Designs featuring clean lines, neutral palettes, and high-quality materials.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Center Column: Large Main Living Room Image */}
-          <div className="md:col-span-5 flex justify-center">
+          <ScrollReveal animation="scale-up" delay={150} className="md:col-span-5 flex justify-center">
             <div
               className={`w-full aspect-[16/10] rounded-[32px] overflow-hidden shadow-2xl relative border transition-transform duration-500 hover:scale-[1.01] ${
                 isDarkMode ? 'border-white/10 shadow-black/40' : 'border-[#C5A059]/20 shadow-slate-900/10'
@@ -95,10 +99,10 @@ export default function About({ isDarkMode, teamMembers }: AboutProps) {
                 priority
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Smaller Showcase Image & Philosophy */}
-          <div className="md:col-span-3 flex flex-col justify-between h-full space-y-6 sm:space-y-8">
+          <ScrollReveal animation="fade-left" delay={300} className="md:col-span-3 flex flex-col justify-between h-full space-y-6 sm:space-y-8">
             <div
               className={`w-full aspect-[16/10] rounded-[24px] overflow-hidden shadow-xl relative border transition-transform duration-500 hover:scale-[1.01] ${
                 isDarkMode ? 'border-white/10 shadow-black/30' : 'border-[#C5A059]/15 shadow-slate-900/5'
@@ -129,19 +133,20 @@ export default function About({ isDarkMode, teamMembers }: AboutProps) {
                 At Galleria, we believe in creating luxurious, personalized environments that reflect our clients' tastes and lifestyles.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
         {/* Bottom Section: The Team Behind Our Curations */}
         <div className={`pt-20 border-t ${isDarkMode ? 'border-white/10' : 'border-[#C5A059]/20'}`}>
-          <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
+          <ScrollReveal animation="fade-up" className="text-center space-y-4 max-w-2xl mx-auto mb-16">
             <h3
               className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-normal transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-[#0C1623]'
               }`}
             >
-              The Team Behind <span className="italic font-light text-[#C5A059] font-serif">Our Curations</span>
+              <CharReveal text="The Team Behind " />
+              <CharReveal text="Our Curations" className="italic font-light text-[#C5A059] font-serif" delay={280} />
             </h3>
             <p
               className={`text-xs sm:text-sm font-light leading-relaxed transition-colors duration-300 ${
@@ -153,64 +158,74 @@ export default function About({ isDarkMode, teamMembers }: AboutProps) {
             
             {/* Styled Action Buttons */}
             <div className="flex items-center justify-center gap-4 pt-2">
-              <a
-                href="#shop"
-                className="bg-[#C5A059] hover:bg-white text-[#0C1623] px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md"
+              <LightBeamButton
+                onClick={() => {
+                  document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-6 py-3"
               >
                 Explore Catalog
-              </a>
-              <a
-                href="#contact"
-                className={`border px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
-                  isDarkMode
-                    ? 'border-white/20 text-white hover:bg-white/5'
-                    : 'border-[#0C1623]/25 text-[#0C1623] hover:bg-[#0C1623]/5'
+              </LightBeamButton>
+              <LightBeamButton
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                gradientColors={['#7E8F9F', '#BCCCDC', '#7E8F9F']}
+                className={`px-6 py-3 border ${
+                  isDarkMode ? 'border-white/10' : 'border-[#0C1623]/10'
                 }`}
               >
                 Get in Touch
-              </a>
+              </LightBeamButton>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Polaroid Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto px-4 md:px-0">
-            {activeMembers.map((member) => (
-              <div
+            {activeMembers.map((member, idx) => (
+              <ScrollReveal
                 key={member.id}
-                className={`group relative rounded-[28px] p-4 sm:p-5 shadow-xl transition-all duration-500 hover:scale-104 hover:z-20 ${member.tilt} ${
-                  isDarkMode
-                    ? 'bg-[#0C1623]/60 border border-white/10 shadow-black/35 hover:border-[#C5A059]/40'
-                    : 'bg-white border border-[#E6DFC4]/50 shadow-slate-900/5 hover:border-[#C5A059]/60'
-                }`}
+                animation="fade-up"
+                delay={idx * 150}
+                duration={750}
+                className="h-full"
               >
                 <div
-                  className={`relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-white/10 mb-4 border ${
-                    isDarkMode ? 'border-white/5' : 'border-slate-100'
+                  className={`group relative rounded-[28px] p-4 sm:p-5 shadow-xl transition-all duration-500 hover:scale-104 hover:z-20 ${member.tilt} ${
+                    isDarkMode
+                      ? 'bg-[#0C1623]/60 border border-white/10 shadow-black/35 hover:border-[#C5A059]/40'
+                      : 'bg-white border border-[#E6DFC4]/50 shadow-slate-900/5 hover:border-[#C5A059]/60'
                   }`}
                 >
-                  {member.image && (
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-w-768px) 100vw, 25vw"
-                    />
-                  )}
-                </div>
-                <div className="pb-2 text-left">
-                  <h4
-                    className={`font-sans font-bold text-lg tracking-tight transition-colors duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-[#0C1623]'
+                  <div
+                    className={`relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-white/10 mb-4 border ${
+                      isDarkMode ? 'border-white/5' : 'border-slate-100'
                     }`}
                   >
-                    {member.name}
-                  </h4>
-                  <p className="text-[11px] font-bold text-[#C5A059] uppercase tracking-wider mt-0.5">
-                    {member.role}
-                  </p>
+                    {member.image && (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-w-768px) 100vw, 25vw"
+                      />
+                    )}
+                  </div>
+                  <div className="pb-2 text-left">
+                    <h4
+                      className={`font-sans font-bold text-lg tracking-tight transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-[#0C1623]'
+                      }`}
+                    >
+                      {member.name}
+                    </h4>
+                    <p className="text-[11px] font-bold text-[#C5A059] uppercase tracking-wider mt-0.5">
+                      {member.role}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

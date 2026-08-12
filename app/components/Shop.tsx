@@ -4,8 +4,12 @@ import React from 'react';
 import Image from 'next/image';
 import { Star, Heart, ShoppingBag } from 'lucide-react';
 import ThreeDTiltCard from './ThreeDTiltCard';
+import InteractiveImage from './InteractiveImage';
 import { Product } from '../types';
 import { CATEGORIES, PRODUCTS } from '../data';
+import ScrollReveal from './ScrollReveal';
+import CharReveal from './CharReveal';
+import LightBeamButton from './LightBeamButton';
 
 interface ShopProps {
   isDarkMode: boolean;
@@ -51,45 +55,62 @@ export default function Shop({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center space-y-3 mb-10">
+        <ScrollReveal animation="fade-up" className="text-center space-y-3 mb-10">
           <h2 className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-normal transition-colors duration-300 ${
             isDarkMode ? 'text-white' : 'text-[#0C1623]'
           }`}>
-            Featured <span className={`font-serif italic font-light transition-colors duration-300 ${
-              isDarkMode ? 'text-slate-300' : 'text-[#596A7D]'
-            }`}>Artworks</span>
+            <CharReveal text="Featured " />
+            <CharReveal
+              text="Artworks"
+              className={`font-serif italic font-light transition-colors duration-300 ${
+                isDarkMode ? 'text-slate-300' : 'text-[#596A7D]'
+              }`}
+              delay={160}
+            />
           </h2>
           <p className={`text-xs tracking-[0.25em] uppercase font-medium transition-colors duration-300 ${
             isDarkMode ? 'text-[#C5A059]' : 'text-[#716250]'
           }`}>
             EXCEPTIONAL ARTWORK & CRAFTSMANSHIP IN EVERY PIECE
           </p>
-          <div className="w-12 h-0.5 bg-[#C5A059] mx-auto mt-2"></div>
-        </div>
+          <div className="w-12 h-0.5 bg-[#C5A059] mx-auto mt-2 overflow-hidden relative">
+            <div className="absolute inset-0 bg-[#C5A059] animate-line-reveal"></div>
+          </div>
+        </ScrollReveal>
 
         {/* Centered Category Filter Pill Bar */}
-        <div className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-12">
-          {CATEGORIES.map((c) => (
-            <button
-              key={c.id}
-              onClick={() => {
-                setActiveTab(c.id);
-                setVisibleCount(6);
-              }}
-              className={`px-7 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 ${
-                activeTab === c.id
-                  ? (isDarkMode ? 'bg-[#C5A059] text-[#0C1623] shadow-md scale-105' : 'bg-[#0B131F] text-white shadow-md scale-105')
-                  : (isDarkMode ? 'bg-[#0C1623]/60 text-slate-300 border border-white/10 hover:border-white hover:text-white' : 'bg-white text-[#4A5568] border border-[#D0D5DD] hover:border-[#0B131F] hover:text-[#0B131F]')
-              }`}
-            >
-              {c.title}
-            </button>
-          ))}
-        </div>
+        <ScrollReveal animation="scale-up" delay={100} className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-12">
+          {CATEGORIES.map((c) => {
+            const isActive = activeTab === c.id;
+            return (
+              <LightBeamButton
+                key={c.id}
+                onClick={() => {
+                  setActiveTab(c.id);
+                  setVisibleCount(6);
+                }}
+                gradientColors={
+                  isActive
+                    ? ['#C5A059', '#EBD8BE', '#C5A059']
+                    : ['transparent', 'transparent', 'transparent']
+                }
+                className={`px-6 py-2.5 text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 ${
+                  isActive 
+                    ? 'scale-105 shadow-[0_0_20px_-5px_rgba(197,160,89,0.4)]' 
+                    : `bg-transparent text-slate-400 hover:text-white hover:scale-105 border ${
+                        isDarkMode ? 'border-white/10 hover:border-white/20' : 'border-[#D0D5DD] hover:border-[#0C1623]/30 text-gray-500 hover:text-black'
+                      }`
+                }`}
+              >
+                {c.title}
+              </LightBeamButton>
+            );
+          })}
+        </ScrollReveal>
 
         {/* 3-Column Light Product Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredProducts.slice(0, visibleCount).map((prod) => {
+          {filteredProducts.slice(0, visibleCount).map((prod, idx) => {
             const isWishlisted = wishlist.includes(prod.id);
             const specific = prod.discountPercent || 0;
             const activeDiscount = specific > 0 ? specific : globalDiscount;
@@ -97,15 +118,20 @@ export default function Shop({
             const salePrice = hasDiscount ? Math.round(prod.pricePKR * (1 - activeDiscount / 100)) : prod.pricePKR;
 
             return (
-              <ThreeDTiltCard
+              <ScrollReveal
                 key={prod.id}
-                onClick={() => setSelectedProduct(prod)}
-                className={`group backdrop-blur-xl border rounded-[32px] p-5 flex flex-col justify-between transition-all duration-500 relative ${
-                  isDarkMode
-                    ? 'bg-[#0C1623]/60 border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:border-[#C5A059]/60 hover:shadow-[0_20px_40px_rgba(197,160,89,0.15)]'
-                    : 'bg-white/45 border-white/70 shadow-[0_8px_32px_rgba(11,19,31,0.06)] hover:border-[#C5A059]/60 hover:shadow-[0_20px_40px_rgba(197,160,89,0.12)]'
-                }`}
+                animation="fade-up"
+                delay={(idx % 3) * 120}
+                duration={700}
               >
+                <ThreeDTiltCard
+                  onClick={() => setSelectedProduct(prod)}
+                  className={`group backdrop-blur-xl border rounded-[32px] p-5 flex flex-col justify-between transition-all duration-500 relative h-full ${
+                    isDarkMode
+                      ? 'bg-[#0C1623]/60 border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:border-[#C5A059]/60 hover:shadow-[0_20px_40px_rgba(197,160,89,0.15)]'
+                      : 'bg-white/45 border-white/70 shadow-[0_8px_32px_rgba(11,19,31,0.06)] hover:border-[#C5A059]/60 hover:shadow-[0_20px_40px_rgba(197,160,89,0.12)]'
+                  }`}
+                >
                 {/* Portrait Art Canvas Image with Museum Matting/Passepartout */}
                 <div className={`relative aspect-[4/5] w-full overflow-hidden rounded-[20px] bg-white border p-2.5 transition-all duration-300 ${
                   isDarkMode
@@ -113,12 +139,24 @@ export default function Shop({
                     : 'border-[#E6DFC4]/50 shadow-[inset_0_4px_10px_rgba(11,19,31,0.03)]'
                 }`}>
                   <div className="relative w-full h-full overflow-hidden rounded-xl">
-                    <Image
+                    <InteractiveImage
                       src={prod.image}
                       alt={prod.name}
                       fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                     />
+
+                    {/* Official Galleria Monogram Watermark Seal */}
+                    <div className="absolute bottom-3 right-3 z-10 pointer-events-none select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] flex items-center gap-1.5 bg-[#0C1623]/75 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                      <div className="relative w-4 h-4">
+                        <Image
+                          src="/images/monogram.png"
+                          alt="Galleria Monogram"
+                          fill
+                          className="object-contain brightness-0 invert"
+                        />
+                      </div>
+                      <span className="text-[8px] font-extrabold tracking-[0.2em] uppercase text-white/90">Galleria</span>
+                    </div>
                   </div>
 
                   {/* Top Bar overlays floating over image */}
@@ -134,6 +172,7 @@ export default function Shop({
                   )}
 
                   <button
+                    suppressHydrationWarning
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleWishlist(prod.id, prod.name);
@@ -174,25 +213,22 @@ export default function Shop({
                     )}
                   </div>
 
-                  <button
+                  <LightBeamButton
                     onClick={(e) => {
                       e.stopPropagation();
                       addToCart(prod);
                     }}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 shadow-md border border-white/10 ${
-                      isDarkMode
-                        ? 'bg-[#C5A059] text-[#0C1623] hover:bg-white'
-                        : 'bg-[#0C1623] text-white hover:bg-[#C5A059] hover:text-[#0C1623]'
-                    }`}
+                    className="w-10 h-10 border border-white/10"
                     aria-label="Add to Cart"
                   >
                     <ShoppingBag className="w-4 h-4 stroke-[1.75]" />
-                  </button>
+                  </LightBeamButton>
                 </div>
               </ThreeDTiltCard>
-            );
-          })}
-        </div>
+            </ScrollReveal>
+          );
+        })}
+      </div>
 
         {/* Infinite Scroll Indicator / Dynamic Loader */}
         {visibleCount < filteredProducts.length && (
@@ -206,6 +242,7 @@ export default function Shop({
               </div>
             ) : (
               <button
+                suppressHydrationWarning
                 onClick={() => setVisibleCount((prev) => Math.min(prev + 3, filteredProducts.length))}
                 className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md ${
                   isDarkMode

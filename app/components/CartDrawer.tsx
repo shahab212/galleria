@@ -200,7 +200,7 @@ export default function CartDrawer({
               <p className={`text-[11px] font-light leading-snug transition-colors duration-300 ${
                 isDarkMode ? 'text-slate-400' : 'text-[#7A889B]'
               }`}>
-                Taxes &amp; secure delivery insurance calculated at checkout.
+                Free shipping in Lahore! Standard delivery rate PKR 1,500 elsewhere. Taxes &amp; secure insurance calculated at checkout.
               </p>
               <button
                 onClick={() => {

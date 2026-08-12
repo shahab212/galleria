@@ -4,6 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { X, Star, Heart, Check, ShoppingBag } from 'lucide-react';
 import { Product } from '../types';
+import InteractiveImage from './InteractiveImage';
+import LightBeamButton from './LightBeamButton';
 
 interface ProductDetailModalProps {
   isDarkMode: boolean;
@@ -59,7 +61,7 @@ export default function ProductDetailModal({
       onClick={() => setSelectedProduct(null)}
     >
       <div
-        className={`w-full max-w-5xl rounded-[32px] p-6 sm:p-10 shadow-2xl border relative overflow-hidden my-auto transition-colors duration-500 ${
+        className={`w-full max-w-5xl rounded-[32px] p-5 sm:p-10 shadow-2xl border relative overflow-hidden my-auto transition-all duration-500 animate-fade-up ${
           isDarkMode ? 'bg-[#0C1623] border-white/10 text-white' : 'bg-[#FAF7F2] border-white/80 text-[#0C1623]'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -86,7 +88,7 @@ export default function ProductDetailModal({
             <div className={`relative aspect-square w-full rounded-2xl overflow-hidden shadow-md group border transition-colors duration-300 ${
               isDarkMode ? 'bg-white/5 border-white/10' : 'bg-[#EFEBE4] border-[#E2DAD0]'
             }`}>
-              <Image
+              <InteractiveImage
                 src={[
                   selectedProduct.image,
                   '/shop/image11.jpg',
@@ -95,9 +97,21 @@ export default function ProductDetailModal({
                 ][selectedThumbIndex] || selectedProduct.image}
                 alt={selectedProduct.name}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 priority
               />
+
+              {/* Official Galleria Monogram Watermark Seal */}
+              <div className="absolute bottom-4 right-4 z-20 pointer-events-none select-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] flex items-center gap-2 bg-[#0C1623]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
+                <div className="relative w-5 h-5">
+                  <Image
+                    src="/images/monogram.png"
+                    alt="Galleria Monogram"
+                    fill
+                    className="object-contain brightness-0 invert"
+                  />
+                </div>
+                <span className="text-[10px] font-extrabold tracking-[0.25em] uppercase text-white/95">Galleria Arts</span>
+              </div>
 
               {/* Top Floating Badges */}
               <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
@@ -149,9 +163,12 @@ export default function ProductDetailModal({
           <div className="lg:col-span-6 space-y-5">
             
             {/* Breadcrumbs */}
-            <nav className={`text-xs font-medium tracking-wide uppercase flex items-center gap-2 transition-colors duration-300 ${
-              isDarkMode ? 'text-slate-400' : 'text-[#7F8F9F]'
-            }`}>
+            <nav
+              style={{ animationDelay: '100ms' }}
+              className={`text-xs font-medium tracking-wide uppercase flex items-center gap-2 transition-colors duration-300 animate-fade-up ${
+                isDarkMode ? 'text-slate-400' : 'text-[#7F8F9F]'
+              }`}
+            >
               <span>Home</span>
               <span>•</span>
               <span>Shop</span>
@@ -160,16 +177,22 @@ export default function ProductDetailModal({
             </nav>
 
             {/* Product Title */}
-            <h2 className={`font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-tight transition-colors duration-300 ${
-              isDarkMode ? 'text-white' : 'text-[#0C1623]'
-            }`}>
+            <h2
+              style={{ animationDelay: '150ms' }}
+              className={`font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-tight transition-colors duration-300 animate-fade-up ${
+                isDarkMode ? 'text-white' : 'text-[#0C1623]'
+              }`}
+            >
               {selectedProduct.name}
             </h2>
 
             {/* Rating & Review Summary */}
-            <div className={`flex items-center gap-2 text-xs font-semibold transition-colors duration-300 ${
-              isDarkMode ? 'text-slate-200' : 'text-[#1C2530]'
-            }`}>
+            <div
+              style={{ animationDelay: '200ms' }}
+              className={`flex items-center gap-2 text-xs font-semibold transition-colors duration-300 animate-fade-up ${
+                isDarkMode ? 'text-slate-200' : 'text-[#1C2530]'
+              }`}
+            >
               <div className="flex items-center text-[#FFB800]">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-[#FFB800]" />
@@ -180,14 +203,20 @@ export default function ProductDetailModal({
             </div>
 
             {/* Description Paragraph */}
-            <p className={`text-xs sm:text-sm leading-relaxed font-light transition-colors duration-300 ${
-              isDarkMode ? 'text-slate-300' : 'text-[#4A5568]'
-            }`}>
+            <p
+              style={{ animationDelay: '250ms' }}
+              className={`text-xs sm:text-sm leading-relaxed font-light transition-colors duration-300 animate-fade-up ${
+                isDarkMode ? 'text-slate-300' : 'text-[#4A5568]'
+              }`}
+            >
               {selectedProduct.desc || 'Refresh and transform your interior space with premium museum-grade artwork. Handcrafted archival canvas featuring high-definition textures and rich fade-resistant colors.'}
             </p>
 
             {/* Price Display with Original Price Strike-through & Discount Pill */}
-            <div className="flex items-center gap-3 pt-1">
+            <div
+              style={{ animationDelay: '300ms' }}
+              className="flex items-center gap-3 pt-1 animate-fade-up"
+            >
               <span className={`text-3xl font-bold transition-colors duration-300 ${
                 isDarkMode ? 'text-[#C5A059]' : 'text-[#0C1623]'
               }`}>
@@ -214,7 +243,10 @@ export default function ProductDetailModal({
             </div>
 
             {/* Radio Purchase Selector Options */}
-            <div className="space-y-3 pt-1">
+            <div
+              style={{ animationDelay: '350ms' }}
+              className="space-y-3 pt-1 animate-fade-up"
+            >
               <div 
                 onClick={() => setPurchaseOption('standard')}
                 className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between ${
@@ -277,103 +309,120 @@ export default function ProductDetailModal({
             </div>
 
             {/* Quantity & Add to Cart Controls OR Post-Add-to-Cart Action Buttons */}
-            {!hasAddedToCart ? (
-              <div className="flex items-center gap-4 pt-3">
-                {/* Quantity Pill Selector (- 1 +) */}
-                <div className={`flex items-center border-2 rounded-full px-4 py-2.5 space-x-4 transition-all duration-300 ${
-                  isDarkMode ? 'border-white/10 bg-[#070D14]' : 'border-[#E2DAD0] bg-white'
-                }`}>
-                  <button 
-                    onClick={() => setModalQty((prev) => Math.max(1, prev - 1))}
-                    className={`font-bold text-base px-1 transition-colors duration-300 ${
-                      isDarkMode ? 'text-slate-400 hover:text-white' : 'text-gray-500 hover:text-black'
-                    }`}
-                    aria-label="Decrease quantity"
-                  >
-                    −
-                  </button>
-                  <span className={`font-bold text-sm min-w-[20px] text-center transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-[#0C1623]'
+            <div
+              style={{ animationDelay: '400ms' }}
+              className="animate-fade-up"
+            >
+              {!hasAddedToCart ? (
+                <div className="flex items-center gap-4 pt-3">
+                  {/* Quantity Pill Selector (- 1 +) */}
+                  <div className={`flex items-center border-2 rounded-full px-4 py-2.5 space-x-4 transition-all duration-300 ${
+                    isDarkMode ? 'border-white/10 bg-[#070D14]' : 'border-[#E2DAD0] bg-white'
                   }`}>
-                    {modalQty}
-                  </span>
-                  <button 
-                    onClick={() => setModalQty((prev) => prev + 1)}
-                    className={`font-bold text-base px-1 transition-colors duration-300 ${
-                      isDarkMode ? 'text-slate-400 hover:text-white' : 'text-gray-500 hover:text-black'
-                    }`}
-                    aria-label="Increase quantity"
-                  >
-                    +
-                  </button>
-                </div>
+                    <button 
+                      onClick={() => setModalQty((prev) => Math.max(1, prev - 1))}
+                      className={`font-bold text-base px-1 transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-400 hover:text-white' : 'text-gray-500 hover:text-black'
+                      }`}
+                      aria-label="Decrease quantity"
+                    >
+                      −
+                    </button>
+                    <span className={`font-bold text-sm min-w-[20px] text-center transition-colors duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-[#0C1623]'
+                    }`}>
+                      {modalQty}
+                    </span>
+                    <button 
+                      onClick={() => setModalQty((prev) => prev + 1)}
+                      className={`font-bold text-base px-1 transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-400 hover:text-white' : 'text-gray-500 hover:text-black'
+                      }`}
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
 
-                {/* Black Rounded Pill Add to Cart Button */}
-                <button
-                  onClick={() => {
-                    for (let i = 0; i < modalQty; i++) {
-                      addToCart(selectedProduct);
-                    }
-                    setHasAddedToCart(true);
-                  }}
-                  className={`flex-1 py-3.5 px-8 rounded-full font-semibold text-sm tracking-wide transition-all shadow-lg flex items-center justify-center gap-2 group ${
-                    isDarkMode
-                      ? 'bg-[#C5A059] hover:bg-white text-[#0C1623] hover:text-[#0C1623]'
-                      : 'bg-[#0C1623] hover:bg-[#1E293B] text-white'
-                  }`}
-                >
-                  <ShoppingBag className="w-4 h-4 stroke-[2]" />
-                  <span>Add to Cart</span>
-                </button>
-              </div>
-            ) : (
-              /* Post-Add-To-Cart Action Buttons (Checkout Cart OR Continue Shopping) */
-              <div className="space-y-3 pt-3 animate-fadeIn">
-                <div className={`flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all duration-300 ${
-                  isDarkMode ? 'text-[#10B981] border-[#10B981]/30 bg-[#10B981]/5' : 'text-[#10B981] border-[#10B981]/30 bg-[#10B981]/10'
-                }`}>
-                  <Check className="w-4 h-4 stroke-[3]" />
-                  <span>Added to cart! What would you like to do next?</span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {/* Checkout Cart Button */}
-                  <button
+                  {/* Black Rounded Pill Add to Cart Button */}
+                  <LightBeamButton
                     onClick={() => {
-                      setSelectedProduct(null);
-                      setIsCartOpen(true);
+                      for (let i = 0; i < modalQty; i++) {
+                        addToCart(selectedProduct);
+                      }
+                      setHasAddedToCart(true);
                     }}
-                    className={`w-full py-4 rounded-full font-bold text-xs tracking-widest uppercase transition-all shadow-lg flex items-center justify-center gap-2 ${
-                      isDarkMode
-                        ? 'bg-[#C5A059] hover:bg-white text-[#0C1623] hover:text-[#0C1623]'
-                        : 'bg-[#0C1623] hover:bg-[#1E293B] text-white'
-                    }`}
+                    className="flex-1 py-3.5 px-8 text-sm"
                   >
-                    <ShoppingBag className="w-4 h-4" />
-                    <span>CHECKOUT CART</span>
-                  </button>
-
-                  {/* Continue Shopping Button */}
-                  <button
-                    onClick={() => setSelectedProduct(null)}
-                    className={`w-full py-4 rounded-full font-bold text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-2 border-2 ${
-                      isDarkMode
-                        ? 'bg-transparent hover:bg-white/10 text-white border-white/20'
-                        : 'bg-white hover:bg-gray-100 text-[#0C1623] border-[#0C1623]'
-                    }`}
-                  >
-                    <span>CONTINUE SHOPPING</span>
-                  </button>
+                    <ShoppingBag className="w-4 h-4 stroke-[2]" />
+                    <span>Add to Cart</span>
+                  </LightBeamButton>
                 </div>
-              </div>
-            )}
+              ) : (
+                /* Post-Add-To-Cart Action Buttons (Checkout Cart OR Continue Shopping) */
+                <div className="space-y-3 pt-3 animate-fadeIn">
+                  <div className={`flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all duration-300 ${
+                    isDarkMode ? 'text-[#10B981] border-[#10B981]/30 bg-[#10B981]/5' : 'text-[#10B981] border-[#10B981]/30 bg-[#10B981]/10'
+                  }`}>
+                    <Check className="w-4 h-4 stroke-[3]" />
+                    <span>Added to cart! What would you like to do next?</span>
+                  </div>
 
-            {/* Sub-text Guarantee */}
-            <p className={`text-[11px] pt-1 flex items-center gap-1.5 font-light transition-colors duration-300 ${
-              isDarkMode ? 'text-slate-400' : 'text-gray-500'
-            }`}>
-              <span>✨ Free Museum Delivery & 100% Satisfaction Guarantee.</span>
-            </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* Checkout Cart Button */}
+                    <LightBeamButton
+                      onClick={() => {
+                        setSelectedProduct(null);
+                        setIsCartOpen(true);
+                      }}
+                      className="w-full py-4 text-xs font-bold"
+                    >
+                      <ShoppingBag className="w-4 h-4" />
+                      <span>CHECKOUT CART</span>
+                    </LightBeamButton>
+ 
+                    {/* Continue Shopping Button */}
+                    <LightBeamButton
+                      onClick={() => setSelectedProduct(null)}
+                      gradientColors={['#7E8F9F', '#BCCCDC', '#7E8F9F']}
+                      className={`w-full py-4 text-xs font-bold border ${
+                        isDarkMode ? 'border-white/10' : 'border-[#0C1623]/20'
+                      }`}
+                    >
+                      <span>CONTINUE SHOPPING</span>
+                    </LightBeamButton>
+                  </div>
+                </div>
+              )}
+
+              {/* Sub-text Guarantee */}
+              <p className={`text-[11px] pt-1 flex items-center gap-1.5 font-light transition-colors duration-300 ${
+                isDarkMode ? 'text-slate-400' : 'text-gray-500'
+              }`}>
+                <span>✨ Free Museum Delivery &amp; 100% Satisfaction Guarantee.</span>
+              </p>
+
+              {/* Collapsible Return Policy Accordion */}
+              <div className="pt-2 animate-fade-up" style={{ animationDelay: '450ms' }}>
+                <details className={`group border rounded-2xl overflow-hidden transition-all duration-300 ${
+                  isDarkMode ? 'border-white/10 bg-[#070D14]/40' : 'border-[#E2DAD0] bg-white/50'
+                }`}>
+                  <summary className="flex items-center justify-between p-4 cursor-pointer select-none">
+                    <span className="text-[10px] font-bold tracking-widest text-[#C5A059] uppercase flex items-center gap-1.5">
+                      🔄 Return &amp; Exchange Policy
+                    </span>
+                    <span className="text-[#C5A059] transition-transform group-open:rotate-180 duration-300">
+                      ▼
+                    </span>
+                  </summary>
+                  <div className={`p-4 pt-0 text-[11px] font-light leading-relaxed border-t transition-all ${
+                    isDarkMode ? 'border-white/5 text-slate-300' : 'border-gray-100 text-[#4A5568]'
+                  }`}>
+                    We stand by our master curation. We offer a <strong className="font-semibold text-[#C5A059]">7-Day Hassle-Free Exchange Policy</strong>. If your canvas print or frame arrives damaged or is not to your liking, contact our Concierge to arrange a free pickup and replacement or full store credit refund.
+                  </div>
+                </details>
+              </div>
+            </div>
 
           </div>
 

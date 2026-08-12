@@ -2,6 +2,9 @@
 
 import React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
+import CharReveal from './CharReveal';
+import LightBeamButton from './LightBeamButton';
 
 interface ContactProps {
   isDarkMode: boolean;
@@ -17,13 +20,13 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end">
           
           {/* Left Column: Get In Touch Headline, Contact Info & Live Chat Pill Button */}
-          <div className="lg:col-span-5 space-y-8">
+          <ScrollReveal animation="fade-right" className="lg:col-span-5 space-y-8">
             
             {/* Top Monogram Icon Badge */}
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-md transition-all duration-300 ${
               isDarkMode ? 'bg-[#0C1623] border border-white/10 text-white' : 'bg-white border border-[#E6DFC4] text-[#0C1623]'
             }`}>
-              <Sparkles className="w-5 h-5 text-[#C5A059]" />
+              <Sparkles className="w-5 h-5 text-[#C5A059] animate-pulse" />
             </div>
 
             {/* Title & Description */}
@@ -31,8 +34,8 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
               <h2 className={`font-sans text-5xl sm:text-6xl font-normal tracking-tight leading-[1.05] transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-[#0C1623]'
               }`}>
-                Get in ── <br />
-                <span className="font-semibold">touch with us</span>
+                <CharReveal text="Get in ──" /><br />
+                <CharReveal text="touch with us" className="font-semibold" delay={180} />
               </h2>
               <p className={`text-xs sm:text-sm leading-relaxed font-light max-w-md transition-colors duration-300 ${
                 isDarkMode ? 'text-slate-300' : 'text-[#4F5B6A]'
@@ -73,27 +76,21 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
 
             {/* Live Chat Black Pill Button */}
             <div className="pt-2">
-              <a
-                href="https://wa.me/923001234567"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`rounded-full px-7 py-3.5 font-semibold text-xs inline-flex items-center gap-3 shadow-lg hover:scale-102 transition-all duration-300 group ${
-                  isDarkMode ? 'bg-[#C5A059] hover:bg-white text-[#0C1623] hover:text-[#0C1623]' : 'bg-[#0C1623] hover:bg-[#1E293B] text-white'
-                }`}
+              <LightBeamButton
+                onClick={() => window.open("https://wa.me/923001234567", "_blank", "noopener,noreferrer")}
+                className="px-7 py-3.5 font-semibold text-xs inline-flex items-center gap-3"
               >
                 <span>Live Chat</span>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center transition ${
-                  isDarkMode ? 'bg-[#0C1623]/25 group-hover:bg-[#0C1623] group-hover:text-white' : 'bg-white/20 group-hover:bg-white group-hover:text-[#0C1623]'
-                }`}>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center bg-white/20 group-hover:bg-white group-hover:text-[#0C1623] transition-colors duration-300">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
-              </a>
+              </LightBeamButton>
             </div>
 
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Clean White/Dark Glass Card Minimalist Form */}
-          <div className={`lg:col-span-7 rounded-[32px] p-8 sm:p-12 shadow-xl border transition-all duration-300 ${
+          <ScrollReveal animation="fade-left" delay={150} className={`lg:col-span-7 rounded-[32px] p-8 sm:p-12 shadow-xl border transition-all duration-300 ${
             isDarkMode ? 'bg-[#0C1623]/60 backdrop-blur-xl border-white/10' : 'bg-white border-[#E6DFC4]'
           }`}>
             <form onSubmit={(e) => { e.preventDefault(); triggerToast('Thank you! Your message has been sent to our team.'); }} className="space-y-6">
@@ -103,6 +100,7 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
                 <div className="space-y-2">
                   <label className={`text-xs font-semibold block transition-colors duration-300 ${isDarkMode ? 'text-slate-200' : 'text-[#1C2530]'}`}>First Name</label>
                   <input
+                    suppressHydrationWarning
                     type="text"
                     required
                     placeholder="Enter your first name..."
@@ -116,6 +114,7 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
                 <div className="space-y-2">
                   <label className={`text-xs font-semibold block transition-colors duration-300 ${isDarkMode ? 'text-slate-200' : 'text-[#1C2530]'}`}>Last Name</label>
                   <input
+                    suppressHydrationWarning
                     type="text"
                     required
                     placeholder="Enter your last name..."
@@ -132,6 +131,7 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
               <div className="space-y-2">
                 <label className={`text-xs font-semibold block transition-colors duration-300 ${isDarkMode ? 'text-slate-200' : 'text-[#1C2530]'}`}>Email</label>
                 <input
+                  suppressHydrationWarning
                   type="email"
                   required
                   placeholder="Enter your email address..."
@@ -147,6 +147,7 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
               <div className="space-y-2">
                 <label className={`text-xs font-semibold block transition-colors duration-300 ${isDarkMode ? 'text-slate-200' : 'text-[#1C2530]'}`}>How can we help you?</label>
                 <textarea
+                  suppressHydrationWarning
                   rows={4}
                   required
                   placeholder="Enter your message..."
@@ -160,23 +161,19 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
 
               {/* Bottom Right Floating Send Message Pill Button */}
               <div className="flex justify-end pt-2">
-                <button
+                <LightBeamButton
                   type="submit"
-                  className={`rounded-full px-8 py-4 font-semibold text-xs inline-flex items-center gap-3 shadow-lg hover:scale-102 transition-all duration-300 group ${
-                    isDarkMode ? 'bg-[#C5A059] hover:bg-white text-[#0C1623] hover:text-[#0C1623]' : 'bg-[#0C1623] hover:bg-[#1E293B] text-white'
-                  }`}
+                  className="px-8 py-4 font-semibold text-xs inline-flex items-center gap-3"
                 >
                   <span>Send Message</span>
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center transition ${
-                    isDarkMode ? 'bg-[#0C1623]/25 group-hover:bg-[#0C1623] group-hover:text-white' : 'bg-white/20 group-hover:bg-white group-hover:text-[#0C1623]'
-                  }`}>
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center bg-white/20 group-hover:bg-white group-hover:text-[#0C1623] transition-colors duration-300">
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
-                </button>
+                </LightBeamButton>
               </div>
 
             </form>
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

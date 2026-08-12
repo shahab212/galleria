@@ -48,7 +48,9 @@ export async function POST(request: NextRequest) {
         status: body.payment?.method === 'bank' ? 'Awaiting Verification' : 'Pending'
       },
       items: body.items || [], // array of { product: Product, quantity: number }
-      subtotal: Number(body.subtotal) || 0
+      subtotal: Number(body.subtotal) || 0,
+      shipping: Number(body.shipping) || 0,
+      total: Number(body.total) || Number(body.subtotal) || 0
     };
 
     db.orders.push(newOrder);

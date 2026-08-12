@@ -21,6 +21,12 @@ import CartDrawer from './components/CartDrawer';
 import CheckoutModal from './components/CheckoutModal';
 import SearchOverlay from './components/SearchOverlay';
 import ProductDetailModal from './components/ProductDetailModal';
+import CursorTrailer from './components/CursorTrailer';
+import AmbientBackground from './components/AmbientBackground';
+import MobileQuickBar from './components/MobileQuickBar';
+import Patrons, { Patron } from './components/Patrons';
+
+
 
 export default function GalleriaLandingPage() {
   // Full page preloader state
@@ -80,6 +86,9 @@ export default function GalleriaLandingPage() {
   const [globalDiscount, setGlobalDiscount] = useState<number>(0);
   // Dynamic Instagram showcase posts loaded via API
   const [instaPostsList, setInstaPostsList] = useState<any[]>(INSTA_POSTS);
+  // Dynamic patrons list
+  const [patronsList, setPatronsList] = useState<Patron[]>([]);
+
 
   useEffect(() => {
     fetch('/api/products')
@@ -127,7 +136,17 @@ export default function GalleriaLandingPage() {
         }
       })
       .catch((err) => console.error('Error fetching live Instagram posts:', err));
+
+    fetch('/api/patrons')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPatronsList(data);
+        }
+      })
+      .catch((err) => console.error('Error fetching live patrons:', err));
   }, []);
+
 
   // Selected product modal state
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -284,6 +303,10 @@ export default function GalleriaLandingPage() {
     <div className={`relative min-h-screen flex flex-col font-sans overflow-x-hidden transition-colors duration-500 ${
       isDarkMode ? 'bg-[#070D14] text-slate-200' : 'bg-[#FAF7F2] text-[#0C1623]'
     }`}>
+      {/* 0B. CUSTOM CURSOR TRAILER */}
+      <CursorTrailer />
+      {/* 0C. DRIFTING AMBIENT BACKGROUND */}
+      <AmbientBackground isDarkMode={isDarkMode} />
       {/* 0. FULL PAGE ROTATING MONOGRAM PRELOADER SCREEN */}
       <div
         className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${
@@ -371,6 +394,9 @@ export default function GalleriaLandingPage() {
       {/* 6. BRAND STORY / ABOUT US SECTION */}
       <About isDarkMode={isDarkMode} teamMembers={teamMembersList} />
 
+      {/* 6B. DISTINGUISHED PATRONS SECTION */}
+      <Patrons isDarkMode={isDarkMode} patrons={patronsList} />
+
       {/* 7-9. Bespoke Advisory & Propositions & Social feed */}
       <Advisory isDarkMode={isDarkMode} triggerToast={triggerToast} instaPosts={instaPostsList} />
 
@@ -442,11 +468,19 @@ export default function GalleriaLandingPage() {
         globalDiscount={globalDiscount}
       />
 
-      {/* FLOATING CART BUTTON (BOTTOM RIGHT) */}
+      {/* MOBILE QUICK BAR */}
+      <MobileQuickBar
+        isDarkMode={isDarkMode}
+        cartCount={totalCartCount}
+        onCartClick={() => setIsCartOpen(true)}
+        onSearchClick={() => setIsSearchOpen(true)}
+      />
+
+      {/* FLOATING CART BUTTON (DESKTOP ONLY) */}
       {cart.length > 0 && !isCartOpen && !isCheckoutOpen && (
         <button
           onClick={() => setIsCartOpen(true)}
-          className={`fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 animate-fadeIn ${
+          className={`fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full hidden md:flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 animate-fadeIn ${
             isDarkMode
               ? 'bg-[#C5A059] text-[#0C1623] hover:bg-white'
               : 'bg-[#0C1623] text-white hover:bg-[#C5A059] hover:text-[#0C1623]'

@@ -160,9 +160,14 @@ export default function OrdersTab({ orders, onUpdateStatus, triggerToast }: Orde
                         </div>
                       </td>
 
-                      {/* Subtotal */}
-                      <td className="py-4 px-6 font-bold text-[#C5A059] text-sm whitespace-nowrap">
-                        {formatPKR(o.subtotal)}
+                      {/* Total Summary */}
+                      <td className="py-4 px-6 whitespace-nowrap">
+                        <p className="font-bold text-[#C5A059] text-sm">{formatPKR(o.total || o.subtotal)}</p>
+                        {o.shipping !== undefined && o.shipping > 0 ? (
+                          <p className="text-[9px] text-slate-400 mt-0.5">Incl. shipping: {formatPKR(o.shipping)}</p>
+                        ) : (
+                          <p className="text-[9px] text-emerald-400 mt-0.5 font-semibold uppercase">Free Shipping</p>
+                        )}
                       </td>
 
                       {/* Payment mode and HBL details if any */}

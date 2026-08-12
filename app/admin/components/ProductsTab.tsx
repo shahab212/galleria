@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Search, Plus, Edit2, Trash2, X } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, X, Upload, RefreshCw } from 'lucide-react';
 import { Product } from '../../types';
 import { CATEGORIES } from '../../data';
 
@@ -27,6 +27,34 @@ export default function ProductsTab({
 }: ProductsTabProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const formDataObj = new FormData();
+    formDataObj.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formDataObj
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setFormData((prev) => ({ ...prev, image: data.filePath }));
+        triggerToast('Product image uploaded and watermarked successfully!');
+      } else {
+        triggerToast(data.error || 'Failed to upload image');
+      }
+    } catch (error) {
+      triggerToast('Error uploading image');
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   // Modal forms state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -346,14 +374,37 @@ export default function ProductsTab({
               {/* Image URL */}
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Image Asset Path</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="/shop/image11.jpg..."
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  className="w-full text-xs px-4 py-3 rounded-xl border border-white/10 bg-[#070D14] focus:outline-none focus:border-[#C5A059] transition"
-                />
+                
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+                  <div className="sm:col-span-8">
+                    <input
+                      type="text"
+                      required
+                      placeholder="/shop/image11.jpg..."
+                      value={formData.image}
+                      onChange={(e) => setFormData((prev) => ({ ...prev, image: e.target.value }))}
+                      className="w-full text-xs px-4 py-3 rounded-xl border border-white/10 bg-[#070D14] focus:outline-none focus:border-[#C5A059] transition"
+                    />
+                  </div>
+                  
+                  <div className="sm:col-span-4 w-full">
+                    <label className="w-full border border-dashed border-white/20 hover:border-[#C5A059] rounded-xl py-3 px-4 flex items-center justify-center gap-2 cursor-pointer transition text-xs font-semibold uppercase tracking-wider text-slate-300">
+                      {isUploading ? (
+                        <RefreshCw className="w-4 h-4 animate-spin text-[#C5A059]" />
+                      ) : (
+                        <Upload className="w-4 h-4 text-[#C5A059]" />
+                      )}
+                      <span>Upload File</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileUpload}
+                        disabled={isUploading}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
               </div>
 
               {/* Description */}

@@ -16,6 +16,8 @@ import TeamTab from './components/TeamTab';
 import DiscountsTab from './components/DiscountsTab';
 import InstagramTab from './components/InstagramTab';
 import SecurityTab from './components/SecurityTab';
+import PatronsTab from './components/PatronsTab';
+
 
 export default function AdminPage() {
   // Session Authentication State
@@ -23,6 +25,7 @@ export default function AdminPage() {
   const [authError, setAuthError] = useState<string | null>(null);
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Tab State
   const [activeTab, setActiveTab] = useState('analytics');
@@ -34,7 +37,9 @@ export default function AdminPage() {
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
   const [globalDiscount, setGlobalDiscount] = useState<number>(0);
   const [instaPosts, setInstaPosts] = useState<any[]>([]);
+  const [patrons, setPatrons] = useState<any[]>([]);
   const [isDataLoading, setIsDataLoading] = useState(true);
+
 
   // Toast State
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -53,29 +58,33 @@ export default function AdminPage() {
   const fetchData = async () => {
     setIsDataLoading(true);
     try {
-      const [prodRes, ordRes, heroRes, teamRes, settingsRes, instaRes] = await Promise.all([
+      const [prodRes, ordRes, heroRes, teamRes, settingsRes, instaRes, patronsRes] = await Promise.all([
         fetch('/api/products'),
         fetch('/api/orders'),
         fetch('/api/hero'),
         fetch('/api/team'),
         fetch('/api/settings'),
-        fetch('/api/instagram')
+        fetch('/api/instagram'),
+        fetch('/api/patrons')
       ]);
 
-      if (prodRes.ok && ordRes.ok && heroRes.ok && teamRes.ok && settingsRes.ok && instaRes.ok) {
+      if (prodRes.ok && ordRes.ok && heroRes.ok && teamRes.ok && settingsRes.ok && instaRes.ok && patronsRes.ok) {
         const prodData = await prodRes.json();
         const ordData = await ordRes.json();
         const heroData = await heroRes.json();
         const teamData = await teamRes.json();
         const settingsData = await settingsRes.json();
         const instaData = await instaRes.json();
+        const patronsData = await patronsRes.json();
         setProducts(prodData);
         setOrders(ordData);
         setHeroSlides(heroData);
         setTeamMembers(teamData);
         setGlobalDiscount(settingsData.globalDiscountPercent || 0);
         setInstaPosts(instaData);
+        setPatrons(patronsData);
       }
+
     } catch (error) {
       triggerToast('Error synchronizing database.');
     } finally {
@@ -212,6 +221,20 @@ export default function AdminPage() {
     }
   };
 
+  const handleSavePatrons = async (updatedPatrons: any[]) => {
+    const res = await fetch('/api/patrons', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ patrons: updatedPatrons })
+    });
+    if (res.ok) {
+      fetchData();
+    } else {
+      throw new Error('Failed to update patrons list');
+    }
+  };
+
+
   // Order status actions
   const handleUpdateOrderStatus = async (id: string, status: string, paymentStatus?: string) => {
     const res = await fetch(`/api/orders?id=${id}`, {
@@ -265,13 +288,19 @@ export default function AdminPage() {
       )}
 
       {/* Luxury Sidebar Navigation */}
-      <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} handleLogout={handleLogout} />
+      <AdminSidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        handleLogout={handleLogout}
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
 
       {/* Main Workspace Frame */}
       <main className="flex-1 min-w-0 bg-[#070D14] flex flex-col">
         
         {/* Workspace Top Status Header bar */}
-        <AdminHeader />
+        <AdminHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
         {/* Dynamic Inner Tab container */}
         <div className="flex-1 p-8 overflow-y-auto max-w-7xl w-full mx-auto">
@@ -325,6 +354,13 @@ export default function AdminPage() {
                 <InstagramTab
                   instaPosts={instaPosts}
                   onSavePosts={handleSaveInstagramPosts}
+                  triggerToast={triggerToast}
+                />
+              )}
+              {activeTab === 'patrons' && (
+                <PatronsTab
+                  patrons={patrons}
+                  onSavePatrons={handleSavePatrons}
                   triggerToast={triggerToast}
                 />
               )}

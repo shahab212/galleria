@@ -3,6 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Camera } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
+import LightBeamButton from './LightBeamButton';
 
 interface FooterProps {
   isDarkMode: boolean;
@@ -62,17 +64,12 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
             </span>
           </div>
 
-          <button
+          <LightBeamButton
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className={`px-6 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md flex items-center gap-2 group ${
-              isDarkMode
-                ? 'bg-[#C5A059] hover:bg-white text-[#0C1623] hover:text-[#0C1623]'
-                : 'bg-[#0C1623] hover:bg-[#C5A059] text-white hover:text-[#0C1623]'
-            }`}
           >
             <span>Back To Top</span>
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
-          </button>
+            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-300" />
+          </LightBeamButton>
         </div>
 
         {/* 4 Columns Main Grid */}
@@ -81,7 +78,7 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
         }`}>
 
           {/* Col 1: Flagship Gallery Studio */}
-          <div className="lg:col-span-4 space-y-4">
+          <ScrollReveal animation="fade-up" delay={0} className="lg:col-span-4 space-y-4">
             <h4 className={`text-xs font-bold tracking-[0.2em] uppercase border-l-2 border-[#C5A059] pl-3 transition-colors duration-300 ${
               isDarkMode ? 'text-white' : 'text-[#0C1623]'
             }`}>
@@ -108,7 +105,7 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
             {/* Social Pill Links */}
             <div className="flex items-center gap-3 pt-3">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/galleriaarts.co/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs ${
@@ -119,6 +116,21 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
                 aria-label="Instagram"
               >
                 <Camera className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61591824065745"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs ${
+                  isDarkMode
+                    ? 'bg-[#0C1623]/60 text-slate-200 border border-white/10 hover:bg-[#3b5998] hover:text-white'
+                    : 'bg-white text-[#0C1623] border border-[#E6DFC4] hover:bg-[#3b5998] hover:text-white'
+                }`}
+                aria-label="Facebook"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+                </svg>
               </a>
               <a
                 href="https://wa.me/923001234567"
@@ -134,10 +146,10 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
                 <span className="font-bold text-xs">WA</span>
               </a>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Col 2: Showroom Directory */}
-          <div className="lg:col-span-4 space-y-4">
+          <ScrollReveal animation="fade-up" delay={100} className="lg:col-span-4 space-y-4">
             <h4 className={`text-xs font-bold tracking-[0.2em] uppercase border-l-2 border-[#C5A059] pl-3 transition-colors duration-300 ${
               isDarkMode ? 'text-white' : 'text-[#0C1623]'
             }`}>
@@ -157,10 +169,10 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
                 <p className={isDarkMode ? 'text-slate-400' : 'text-[#7F8F9F]'}>Clifton Block 4, Karachi.</p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Col 3: Newsletter Signups */}
-          <div className="lg:col-span-4 space-y-5">
+          <ScrollReveal animation="fade-up" delay={200} className="lg:col-span-4 space-y-5">
             <div className="space-y-2">
               <h4 className={`text-xs font-bold tracking-[0.2em] uppercase border-l-2 border-[#C5A059] pl-3 transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-[#0C1623]'
@@ -176,6 +188,7 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
 
             <form onSubmit={(e) => { e.preventDefault(); triggerToast('Subscribed to Galleria private drops!'); }} className="flex">
               <input
+                suppressHydrationWarning
                 type="email"
                 placeholder="Enter your email address..."
                 required
@@ -186,6 +199,7 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
                 }`}
               />
               <button
+                suppressHydrationWarning
                 type="submit"
                 className={`text-xs font-bold px-6 py-3.5 rounded-r-xl transition shadow-md flex items-center justify-center ${
                   isDarkMode
@@ -220,12 +234,12 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
                 <span>Chat</span>
               </a>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
         {/* Bottom Copyright & Location Bar */}
-        <div className={`flex flex-col md:flex-row items-center justify-between text-xs gap-4 transition-colors duration-300 ${
+        <ScrollReveal animation="fade-up" delay={300} className={`flex flex-col md:flex-row items-center justify-between text-xs gap-4 transition-colors duration-300 w-full ${
           isDarkMode ? 'text-slate-400' : 'text-[#7F8F9F]'
         }`}>
           <p className="text-center md:text-left">
@@ -237,7 +251,7 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
           }`}>
             ISLAMABAD &bull; LAHORE &bull; KARACHI
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </footer>

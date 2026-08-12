@@ -4,6 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { Product } from '../types';
 import { COLLECTION_IMAGES } from '../data';
+import ScrollReveal from './ScrollReveal';
+import CharReveal from './CharReveal';
 
 interface CollectionsProps {
   isDarkMode: boolean;
@@ -25,24 +27,32 @@ export default function Collections({ isDarkMode, setSelectedProduct }: Collecti
       </svg>
 
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center space-y-2">
+      <ScrollReveal animation="fade-up" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center space-y-2">
         <h2 className={`font-serif text-2xl sm:text-3xl font-normal transition-colors duration-300 ${
           isDarkMode ? 'text-white' : 'text-[#0C1623]'
         }`}>
-          Curated <span className={`font-serif italic font-light transition-colors duration-300 ${
-            isDarkMode ? 'text-slate-300' : 'text-[#596A7D]'
-          }`}>Collection Gallery</span>
+          <CharReveal text="Curated " />
+          <CharReveal
+            text="Collection Gallery"
+            className={`font-serif italic font-light transition-colors duration-300 ${
+              isDarkMode ? 'text-slate-300' : 'text-[#596A7D]'
+            }`}
+            delay={160}
+          />
         </h2>
         <p className={`text-[11px] tracking-[0.25em] uppercase font-medium transition-colors duration-300 ${
           isDarkMode ? 'text-[#C5A059]' : 'text-[#716250]'
         }`}>
           DISCOVER OUR LATEST INTERIOR LOOKBOOK & EXCLUSIVE ARTWORK
         </p>
-        <div className="w-12 h-0.5 bg-[#C5A059] mx-auto mt-2"></div>
-      </div>
+        <div className="w-12 h-0.5 bg-[#C5A059] mx-auto mt-2 overflow-hidden relative">
+          <div className="absolute inset-0 bg-[#C5A059] animate-line-reveal"></div>
+        </div>
+      </ScrollReveal>
 
       {/* Curved Banner Strip with Arch Mask */}
-      <div className="relative w-full overflow-hidden py-4">
+      <ScrollReveal animation="scale-up" delay={200} duration={1000} className="relative w-full overflow-hidden py-4">
+
         <div 
           className="relative w-full overflow-hidden py-4"
           style={{ clipPath: 'url(#curved-panorama-mask)' }}
@@ -90,7 +100,7 @@ export default function Collections({ isDarkMode, setSelectedProduct }: Collecti
             ))}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

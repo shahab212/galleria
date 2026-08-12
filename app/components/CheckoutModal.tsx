@@ -59,6 +59,9 @@ export default function CheckoutModal({
     return Math.round(product.pricePKR * (1 - activeDiscount / 100));
   };
 
+  const shippingCost = checkoutForm.city === 'Lahore' ? 0 : 1500;
+  const orderTotal = cartSubtotal + shippingCost;
+
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-lg flex items-center justify-center p-4 overflow-y-auto">
       <div className={`w-full max-w-4xl rounded-[32px] border relative overflow-hidden transition-colors duration-500 shadow-2xl my-8 ${
@@ -77,7 +80,7 @@ export default function CheckoutModal({
 
         {orderReference ? (
           // Success Screen
-          <div className="p-8 sm:p-14 text-center space-y-6 max-w-2xl mx-auto flex flex-col items-center">
+          <div className="p-5 sm:p-14 text-center space-y-6 max-w-2xl mx-auto flex flex-col items-center">
             <div className="w-16 h-16 rounded-full bg-[#C5A059]/10 text-[#C5A059] flex items-center justify-center shadow-md animate-pulse">
               <CheckCircle2 className="w-10 h-10 stroke-[1.5]" />
             </div>
@@ -154,7 +157,9 @@ export default function CheckoutModal({
                         method: checkoutForm.paymentMethod
                       },
                       items: cart,
-                      subtotal: cartSubtotal
+                      subtotal: cartSubtotal,
+                      shipping: shippingCost,
+                      total: orderTotal
                     })
                   });
                   if (res.ok) {
@@ -165,13 +170,29 @@ export default function CheckoutModal({
                   console.error('Error placing order:', error);
                 }
               }}
-              className="lg:col-span-7 p-8 sm:p-10 space-y-6"
+              className="lg:col-span-7 p-5 sm:p-10 space-y-6"
             >
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-[#C5A059] tracking-widest uppercase block">
                   SECURE CHECKOUT
                 </span>
                 <h3 className="font-serif text-2xl font-semibold">Shipping Details</h3>
+              </div>
+
+              <div className={`p-4 rounded-2xl border text-xs leading-relaxed flex items-center gap-3 transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-[#C5A059]/10 border-[#C5A059]/30 text-slate-300' 
+                  : 'bg-[#F3ECE2] border-[#C5A059]/30 text-[#0C1623]'
+              }`}>
+                <div className="w-8 h-8 rounded-full bg-[#C5A059]/20 flex items-center justify-center text-[#C5A059] flex-shrink-0 animate-pulse text-base">
+                  🚚
+                </div>
+                <div>
+                  <p className="font-bold text-[#C5A059] uppercase tracking-wider text-[9px] leading-none">Shipping Policy</p>
+                  <p className="text-[10px] sm:text-[11px] font-light mt-1">
+                    We offer <strong className="font-semibold text-[#C5A059]">FREE Insured Shipping</strong> for all orders in <strong className="font-semibold">Lahore</strong>. Standard delivery rate of PKR 1,500 applies to other cities across Pakistan.
+                  </p>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -337,7 +358,7 @@ export default function CheckoutModal({
             </form>
 
             {/* Right Side: Order Summary Panel (5 columns) */}
-            <div className={`lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l transition-all duration-300 ${
+            <div className={`lg:col-span-5 p-5 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l transition-all duration-300 ${
               isDarkMode ? 'bg-[#070D14]/50 border-white/10' : 'bg-white/80 border-[#E6DFC4]'
             }`}>
               <div className="space-y-6">
@@ -382,14 +403,24 @@ export default function CheckoutModal({
                   </div>
                   <div className="flex justify-between">
                     <span className="opacity-70">Insured Delivery</span>
-                    <span className="text-[#25D366] font-semibold">FREE</span>
+                    {shippingCost === 0 ? (
+                      <span className="text-[#25D366] font-semibold">FREE (Lahore)</span>
+                    ) : (
+                      <span>{formatPKR(shippingCost)}</span>
+                    )}
                   </div>
                 </div>
 
                 <div className="flex justify-between items-baseline pt-2 border-t">
                   <span className="text-xs uppercase tracking-wider font-bold">Total Amount</span>
-                  <span className="text-xl font-bold text-[#C5A059]">{formatPKR(cartSubtotal)}</span>
+                  <span className="text-xl font-bold text-[#C5A059]">{formatPKR(orderTotal)}</span>
                 </div>
+                
+                <p className={`text-[10px] text-center font-light pt-2 transition-colors duration-300 ${
+                  isDarkMode ? 'text-slate-400' : 'text-slate-500'
+                }`}>
+                  🛡️ Protected by our 7-Day Hassle-Free Return &amp; Exchange Policy.
+                </p>
               </div>
 
             </div>

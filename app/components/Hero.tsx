@@ -21,6 +21,10 @@ interface HeroProps {
   heroSlides: HeroSlide[];
 }
 
+import ScrollReveal from './ScrollReveal';
+import CharReveal from './CharReveal';
+import LightBeamButton from './LightBeamButton';
+
 export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
   const [heroIndex, setHeroIndex] = useState(0);
 
@@ -49,13 +53,13 @@ export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
 
   return (
     <section id="home" className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#0C1623]">
-      {/* Full-bleed auto-sliding background images with smooth fade transition */}
+      {/* Full-bleed auto-sliding background images with smooth fade and subtle scale transition */}
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              idx === heroIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${
+              idx === heroIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
             }`}
           >
             <Image
@@ -74,42 +78,43 @@ export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
 
       {/* Main Content (padded below floating navbar, dynamically changes with slide) */}
       <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-12 pt-28 sm:pt-36 lg:pt-40 pb-12 flex-1 flex flex-col justify-center">
-        <div key={heroIndex} className="max-w-2xl space-y-6 text-white animate-fadeIn transition-all duration-700">
+        <div key={heroIndex} className="max-w-2xl space-y-6 text-white">
 
           {/* Category Badge */}
-          <div className="inline-block px-3.5 py-1 bg-black/30 backdrop-blur-md rounded-full text-[10px] font-semibold tracking-[0.2em] text-[#EBD8BE] uppercase border border-white/20">
+          <div className="inline-block px-3.5 py-1 bg-black/30 backdrop-blur-md rounded-full text-[10px] font-semibold tracking-[0.2em] text-[#EBD8BE] uppercase border border-white/20 animate-fade-up opacity-0 [animation-delay:150ms]">
             {currentSlide.badge}
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.1] tracking-tight text-white">
-            {currentSlide.titleLine1}{' '}
-            <span className="inline-flex items-center px-5 py-1 border border-white/80 rounded-full text-4xl sm:text-5xl lg:text-6xl font-light italic font-serif text-[#EBD8BE] mx-1 my-1">
-              {currentSlide.pillText}
+          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.1] tracking-tight text-white">
+            <CharReveal text={currentSlide.titleLine1} delay={50} />{' '}
+            <span className="inline-flex items-center px-4 py-0.5 sm:px-5 sm:py-1 border border-white/80 rounded-full text-2xl sm:text-4xl lg:text-5xl font-light italic font-serif text-[#EBD8BE] mx-1 my-1">
+              <CharReveal text={currentSlide.pillText} delay={250} />
             </span>{' '}
             <br />
-            {currentSlide.titleLine2}
+            <CharReveal text={currentSlide.titleLine2} delay={450} />
           </h1>
 
           {/* Paragraph Subtitle */}
-          <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-lg font-light pt-1">
+          <p className="text-sm sm:text-base text-white/90 leading-relaxed max-w-lg font-light pt-1 animate-fade-up opacity-0 [animation-delay:550ms]">
             {currentSlide.subtitle}
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-6 pt-4">
-            <a
-              href="#shop"
-              onClick={() => setActiveTab(currentSlide.targetCategory)}
-              className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full border border-white/90 text-white font-medium text-xs tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-xs shadow-lg group"
+          <div className="flex flex-wrap items-center gap-6 pt-4 animate-fade-up opacity-0 [animation-delay:750ms]">
+            <LightBeamButton
+              onClick={() => {
+                setActiveTab(currentSlide.targetCategory);
+                document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               <span>{currentSlide.cta}</span>
-              <span className="text-white/70 group-hover:text-black transition">──&gt;</span>
-            </a>
+              <span className="text-white/70 group-hover:translate-x-1 transition duration-300">──&gt;</span>
+            </LightBeamButton>
 
             <a
               href="#collections"
-              className="text-xs font-semibold tracking-wider text-white/90 hover:text-white uppercase transition flex items-center gap-1 group"
+              className="text-xs font-semibold tracking-wider text-white/90 hover:text-white uppercase transition flex items-center gap-1 group relative nav-link-underline"
             >
               <span>{currentSlide.linkText}</span>
               <span className="text-white/70 group-hover:translate-x-1 transition">&gt;</span>
@@ -120,12 +125,18 @@ export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
       </div>
 
       {/* Bottom Controls Bar */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-12 pb-8 sm:pb-12 pt-6 flex flex-col md:flex-row items-end md:items-center justify-between gap-6">
-
+      <ScrollReveal
+        animation="fade-up"
+        delay={850}
+        duration={900}
+        className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-10 lg:px-12 pb-8 sm:pb-12 pt-6 flex flex-col md:flex-row items-end md:items-center justify-between gap-6"
+      >
         {/* Bottom Left: "See All" with line */}
         <div className="flex items-center gap-4 text-xs tracking-widest text-white/80 uppercase font-medium">
-          <a href="#shop" className="hover:text-white transition">See All</a>
-          <div className="w-24 sm:w-36 h-0.5 bg-white/40"></div>
+          <a href="#shop" className="hover:text-white transition relative nav-link-underline">See All</a>
+          <div className="w-24 sm:w-36 h-0.5 bg-white/40 overflow-hidden relative">
+            <div className="absolute inset-0 bg-[#C5A059] animate-line-reveal"></div>
+          </div>
         </div>
 
         {/* Bottom Right: Circular Arrow buttons & Glassmorphism floating preview widget */}
@@ -135,14 +146,14 @@ export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={prevHeroSlide}
-              className="w-10 h-10 rounded-full border border-white/40 bg-black/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/30 transition"
+              className="w-10 h-10 rounded-full border border-white/40 bg-black/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-105 active:scale-95"
               aria-label="Previous Slide"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextHeroSlide}
-              className="w-10 h-10 rounded-full bg-white text-[#0B131F] flex items-center justify-center hover:bg-[#C5A059] hover:text-white transition shadow-lg"
+              className="w-10 h-10 rounded-full bg-white text-[#0B131F] flex items-center justify-center hover:bg-[#C5A059] hover:text-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
               aria-label="Next Slide"
             >
               <ChevronRight className="w-5 h-5" />
@@ -156,8 +167,8 @@ export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
                 <button
                   key={thumbIdx}
                   onClick={() => setHeroIndex(thumbIdx)}
-                  className={`w-10 h-10 rounded-lg overflow-hidden relative border transition-transform ${
-                    thumbIdx === heroIndex ? 'border-[#C5A059] scale-110 z-10 shadow-lg' : 'border-white/40 opacity-70 hover:opacity-100'
+                  className={`w-10 h-10 rounded-lg overflow-hidden relative border transition-all duration-300 ${
+                    thumbIdx === heroIndex ? 'border-[#C5A059] scale-110 z-10 shadow-lg' : 'border-white/40 opacity-70 hover:opacity-100 hover:scale-105'
                   }`}
                 >
                   <Image src={slide.image} alt={`Slide ${thumbIdx + 1}`} fill className="object-contain" />
@@ -167,7 +178,7 @@ export default function Hero({ setActiveTab, heroSlides }: HeroProps) {
           </div>
 
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

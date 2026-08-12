@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     type: 'Textured Canvas',
     pricePKR: 28500,
     rating: 4.8,
-    image: '/shop/image11.jpg',
+    image: '/uploads/watermarked-image11.jpg',
   },
   {
     id: 'p2',
@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
     type: 'Framed Canvas',
     pricePKR: 32000,
     rating: 4.9,
-    image: '/shop/image 22.jpg',
+    image: '/uploads/watermarked-image_22.jpg',
   },
   {
     id: 'p3',
@@ -35,7 +35,7 @@ export const PRODUCTS: Product[] = [
     type: 'Canvas Painting',
     pricePKR: 29500,
     rating: 4.7,
-    image: '/shop/image 33.jpg',
+    image: '/uploads/watermarked-image_33.jpg',
   },
   {
     id: 'p4',
@@ -44,7 +44,7 @@ export const PRODUCTS: Product[] = [
     type: 'Gold Leaf Canvas',
     pricePKR: 36000,
     rating: 4.9,
-    image: '/shop/image 44.jpg',
+    image: '/uploads/watermarked-image_44.jpg',
   },
   {
     id: 'p5',
@@ -53,7 +53,7 @@ export const PRODUCTS: Product[] = [
     type: 'Acrylic Glass Art',
     pricePKR: 42000,
     rating: 4.6,
-    image: '/shop/image 55.jpg',
+    image: '/uploads/watermarked-image_55.jpg',
   },
   {
     id: 'p6',
@@ -62,7 +62,7 @@ export const PRODUCTS: Product[] = [
     type: 'Textured Wall Art',
     pricePKR: 38000,
     rating: 4.8,
-    image: '/shop/image11.jpg',
+    image: '/uploads/watermarked-image11.jpg',
   },
   {
     id: 'p7',
@@ -71,7 +71,7 @@ export const PRODUCTS: Product[] = [
     type: 'Oil Paint Canvas',
     pricePKR: 34500,
     rating: 4.9,
-    image: '/shop/image 22.jpg',
+    image: '/uploads/watermarked-image_22.jpg',
   },
   {
     id: 'p8',
@@ -80,7 +80,7 @@ export const PRODUCTS: Product[] = [
     type: 'Wood Framed Canvas',
     pricePKR: 39000,
     rating: 5.0,
-    image: '/shop/image 33.jpg',
+    image: '/uploads/watermarked-image_33.jpg',
   },
   {
     id: 'p9',
@@ -89,7 +89,7 @@ export const PRODUCTS: Product[] = [
     type: 'Mixed Media Art',
     pricePKR: 31000,
     rating: 4.7,
-    image: '/shop/image 44.jpg',
+    image: '/uploads/watermarked-image_44.jpg',
   },
   {
     id: 'p10',
@@ -98,7 +98,7 @@ export const PRODUCTS: Product[] = [
     type: 'Textured Linen',
     pricePKR: 27000,
     rating: 4.8,
-    image: '/shop/image 55.jpg',
+    image: '/uploads/watermarked-image_55.jpg',
   },
   {
     id: 'p11',
@@ -107,7 +107,7 @@ export const PRODUCTS: Product[] = [
     type: 'Botanical Canvas',
     pricePKR: 33000,
     rating: 4.9,
-    image: '/shop/image11.jpg',
+    image: '/uploads/watermarked-image11.jpg',
   },
   {
     id: 'p12',
@@ -116,7 +116,7 @@ export const PRODUCTS: Product[] = [
     type: 'Architectural Print',
     pricePKR: 41000,
     rating: 4.8,
-    image: '/shop/image 22.jpg',
+    image: '/uploads/watermarked-image_22.jpg',
   },
 ];
 

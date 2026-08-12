@@ -7,7 +7,7 @@
       "type": "Textured Canvas",
       "pricePKR": 28500,
       "rating": 4.8,
-      "image": "/shop/image11.jpg",
+      "image": "/uploads/watermarked-image11.jpg",
       "desc": "Refresh and transform your interior space with premium museum-grade artwork. Handcrafted archival canvas featuring high-definition textures and rich fade-resistant colors.",
       "discountPercent": 0
     },
@@ -18,7 +18,7 @@
       "type": "Framed Canvas",
       "pricePKR": 32000,
       "rating": 4.9,
-      "image": "/shop/image 22.jpg",
+      "image": "/uploads/watermarked-image_22.jpg",
       "desc": "Modern geometric composition crafted for luxury interior walls, finished with a sleek designer border.",
       "discountPercent": 20
     },
@@ -29,7 +29,7 @@
       "type": "Canvas Painting",
       "pricePKR": 29500,
       "rating": 4.7,
-      "image": "/shop/image 33.jpg",
+      "image": "/uploads/watermarked-image_33.jpg",
       "desc": "High-contrast abstract brushwork designed to create a bold aesthetic impact in dining areas and living rooms.",
       "discountPercent": 0
     },
@@ -40,7 +40,7 @@
       "type": "Gold Leaf Canvas",
       "pricePKR": 36000,
       "rating": 4.9,
-      "image": "/shop/image 44.jpg",
+      "image": "/uploads/watermarked-image_44.jpg",
       "desc": "Beautiful hand-drawn calligraphy with authentic gold leaf gilding, set on an antique textured backdrop.",
       "discountPercent": 0
     },
@@ -51,7 +51,7 @@
       "type": "Acrylic Glass Art",
       "pricePKR": 42000,
       "rating": 4.6,
-      "image": "/shop/image 55.jpg",
+      "image": "/uploads/watermarked-image_55.jpg",
       "desc": "High-gloss crystal clear acrylic backing highlighting vibrant stellar hues and sleek geometric silhouettes.",
       "discountPercent": 4
     },
@@ -62,7 +62,7 @@
       "type": "Textured Wall Art",
       "pricePKR": 38000,
       "rating": 4.8,
-      "image": "/shop/image11.jpg",
+      "image": "/uploads/watermarked-image11.jpg",
       "desc": "Fine gesso textures creating subtle shadows. Perfect choice for quiet spaces and neutral-colored bedrooms.",
       "discountPercent": 0
     },
@@ -73,7 +73,7 @@
       "type": "Oil Paint Canvas",
       "pricePKR": 34500,
       "rating": 4.9,
-      "image": "/shop/image 22.jpg",
+      "image": "/uploads/watermarked-image_22.jpg",
       "desc": "A sunset horizon shining through a dense abstract forest landscape. Finished with textured oil glazes.",
       "discountPercent": 0
     },
@@ -84,7 +84,7 @@
       "type": "Wood Framed Canvas",
       "pricePKR": 39000,
       "rating": 5,
-      "image": "/shop/image 33.jpg",
+      "image": "/uploads/watermarked-image_33.jpg",
       "desc": "An elegant modern presentation of Islamic calligraphy housed in an premium custom solid walnut wood frame.",
       "discountPercent": 0
     },
@@ -95,7 +95,7 @@
       "type": "Mixed Media Art",
       "pricePKR": 31000,
       "rating": 4.7,
-      "image": "/shop/image 44.jpg",
+      "image": "/uploads/watermarked-image_44.jpg",
       "desc": "Layered textures combining natural linen fibres, premium metallic paint drops, and soft sand pigments.",
       "discountPercent": 0
     },
@@ -106,7 +106,7 @@
       "type": "Textured Linen",
       "pricePKR": 27000,
       "rating": 4.8,
-      "image": "/shop/image 55.jpg",
+      "image": "/uploads/watermarked-image_55.jpg",
       "desc": "A quiet sunset study capturing pure light over a quiet horizon, printed on luxury organic cotton-linen.",
       "discountPercent": 0
     },
@@ -117,7 +117,7 @@
       "type": "Botanical Canvas",
       "pricePKR": 33000,
       "rating": 4.9,
-      "image": "/shop/image11.jpg",
+      "image": "/uploads/watermarked-image11.jpg",
       "desc": "Deep indigo hues highlighting delicate silver-veined botanical contours. A sophisticated study of flora.",
       "discountPercent": 0
     },
@@ -128,7 +128,7 @@
       "type": "Architectural Print",
       "pricePKR": 41000,
       "rating": 4.8,
-      "image": "/shop/image 22.jpg",
+      "image": "/uploads/watermarked-image_22.jpg",
       "desc": "Dramatic high-contrast light cast upon concrete facades. Perfect for brutalist and industrial decors.",
       "discountPercent": 0
     }
@@ -263,6 +263,63 @@
       "likes": "2.9k",
       "caption": "Custom textured oil artwork installation",
       "tilt": "rotate-2"
+    }
+  ],
+  "patrons": [
+    {
+      "id": "patron-1",
+      "name": "Serena Hotels & Resorts",
+      "location": "Islamabad",
+      "initials": "S.H",
+      "type": "Heritage Calligraphy Collection",
+      "description": "A series of 15 museum-grade gold leaf murals installed in the presidential suites and the main lobby reception area, refreshing every year.",
+      "highlights": "15+ Custom Masterpieces",
+      "image": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=800",
+      "established": "Patron since 2023"
+    },
+    {
+      "id": "patron-2",
+      "name": "Obsidian Design Studio",
+      "location": "Lahore & Karachi",
+      "initials": "O.D",
+      "type": "Textured Abstract Series",
+      "description": "Ongoing curation partnership supplying premium textured canvas panels for their high-end residential lounge designs and model homes.",
+      "highlights": "Ongoing Design Partner",
+      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800",
+      "established": "Patron since 2022"
+    },
+    {
+      "id": "patron-3",
+      "name": "Bank Alfalah Corporate Offices",
+      "location": "Karachi HQ",
+      "initials": "B.A",
+      "type": "Modern Geometric Collections",
+      "description": "Elegant oversized brutalist and high-contrast geometric works integrated into executive corridors, boardrooms, and private meeting suites.",
+      "highlights": "40+ Artworks Delivered",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
+      "established": "Patron since 2024"
+    },
+    {
+      "id": "patron-4",
+      "name": "Cafe Aylanto",
+      "location": "Lahore & Islamabad",
+      "initials": "C.A",
+      "type": "Botanical & Organic Texture Canvas",
+      "description": "Curated bespoke earthy-toned canvas compositions and delicate botanical studies perfectly matched to the upscale bistro dining ambiance.",
+      "highlights": "Seasonal Ambient Refresh",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800",
+      "established": "Patron since 2023"
+    },
+    {
+      "id": "patron-5",
+      "name": "Nishat Penthouse Residences",
+      "location": "Lahore",
+      "initials": "N.R",
+      "type": "Minimalist Linen Paintings",
+      "description": "A curated gallery selection of raw linen canvases featuring quiet, light-study gradients and tactile gesso contours for a private luxury lounge.",
+      "highlights": "Bespoke Curated Gallery",
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800",
+      "established": "Patron since 2024"
     }
   ]
 }
