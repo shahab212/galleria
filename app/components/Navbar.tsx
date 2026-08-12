@@ -103,6 +103,7 @@ export default function Navbar({
 
           {/* Hamburger toggle button (mobile/tablet only) */}
           <button
+            suppressHydrationWarning
             onClick={() => setIsMobileMenuOpen(true)}
             className="lg:hidden p-1 hover:text-[#C5A059] transition-all duration-300 hover:scale-110 active:scale-90 relative"
             aria-label="Open Menu"
@@ -112,6 +113,7 @@ export default function Navbar({
 
           {/* Theme Toggle Button */}
           <button
+            suppressHydrationWarning
             onClick={toggleTheme}
             className="p-1 hover:text-[#C5A059] transition-all duration-300 hover:scale-110 active:scale-90 relative"
             aria-label={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
@@ -124,6 +126,7 @@ export default function Navbar({
           </button>
 
           <button
+            suppressHydrationWarning
             onClick={() => setIsSearchOpen(true)}
             className="p-1 hover:text-[#C5A059] transition-all duration-300 hover:scale-110 active:scale-90 relative"
             aria-label="Search"
@@ -132,6 +135,7 @@ export default function Navbar({
           </button>
 
           <button
+            suppressHydrationWarning
             onClick={() => triggerToast(`Wishlist contains ${wishlist.length} item(s)`)}
             className="p-1 hover:text-[#C5A059] transition-all duration-300 hover:scale-110 active:scale-90 relative"
             aria-label="Wishlist"
@@ -149,6 +153,7 @@ export default function Navbar({
           </a>
 
           <button
+            suppressHydrationWarning
             onClick={() => setIsCartOpen(true)}
             className="p-1 hover:text-[#C5A059] transition-all duration-300 hover:scale-110 active:scale-90 relative flex items-center"
             aria-label="Shopping Cart"

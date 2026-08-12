@@ -52,6 +52,7 @@ export default function MobileQuickBar({
       >
         {/* Quick Link: Home */}
         <button
+          suppressHydrationWarning
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className={`flex flex-col items-center gap-1 active:scale-90 transition-all ${
             isDarkMode ? 'active:text-white' : 'active:text-[#C5A059]'
@@ -64,6 +65,7 @@ export default function MobileQuickBar({
 
         {/* Quick Link: Search */}
         <button
+          suppressHydrationWarning
           onClick={onSearchClick}
           className="flex flex-col items-center gap-1 active:scale-90 transition-all"
           aria-label="Open search"
@@ -74,6 +76,7 @@ export default function MobileQuickBar({
 
         {/* Quick Link: Cart Bag */}
         <button
+          suppressHydrationWarning
           onClick={onCartClick}
           className="flex flex-col items-center gap-1 relative active:scale-90 transition-all"
           aria-label="Open cart"

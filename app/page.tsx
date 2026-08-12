@@ -300,9 +300,12 @@ export default function GalleriaLandingPage() {
   const cartSubtotal = cart.reduce((sum, item) => sum + getEffectivePrice(item.product) * item.quantity, 0);
 
   return (
-    <div className={`relative min-h-screen flex flex-col font-sans overflow-x-hidden transition-colors duration-500 ${
-      isDarkMode ? 'bg-[#070D14] text-slate-200' : 'bg-[#FAF7F2] text-[#0C1623]'
-    }`}>
+    <div
+      suppressHydrationWarning
+      className={`relative min-h-screen flex flex-col font-sans overflow-x-hidden transition-colors duration-500 ${
+        isDarkMode ? 'bg-[#070D14] text-slate-200' : 'bg-[#FAF7F2] text-[#0C1623]'
+      }`}
+    >
       {/* 0B. CUSTOM CURSOR TRAILER */}
       <CursorTrailer />
       {/* 0C. DRIFTING AMBIENT BACKGROUND */}
