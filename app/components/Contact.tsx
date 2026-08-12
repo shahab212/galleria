@@ -5,6 +5,7 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import CharReveal from './CharReveal';
 import LightBeamButton from './LightBeamButton';
+import FollowUsBadge from './FollowUsBadge';
 
 interface ContactProps {
   isDarkMode: boolean;
@@ -74,8 +75,8 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
               </div>
             </div>
 
-            {/* Live Chat Black Pill Button */}
-            <div className="pt-2">
+            {/* Live Chat & Follow Us */}
+            <div className="pt-2 flex flex-wrap items-center gap-6">
               <LightBeamButton
                 onClick={() => window.open("https://wa.me/923001234567", "_blank", "noopener,noreferrer")}
                 className="px-7 py-3.5 font-semibold text-xs inline-flex items-center gap-3"
@@ -85,6 +86,14 @@ export default function Contact({ isDarkMode, triggerToast }: ContactProps) {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </LightBeamButton>
+
+              <FollowUsBadge
+                isDarkMode={isDarkMode}
+                align="left"
+                showWhatsApp={false}
+                facebookUrl="https://www.facebook.com/profile.php?id=61591824065745"
+                instagramUrl="https://www.instagram.com/galleriaarts.co/"
+              />
             </div>
 
           </ScrollReveal>

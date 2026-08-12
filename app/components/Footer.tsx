@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowUpRight, Camera } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import LightBeamButton from './LightBeamButton';
+import FollowUsBadge from './FollowUsBadge';
 
 interface FooterProps {
   isDarkMode: boolean;
@@ -102,49 +103,16 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
               }`}>Hours: Mon – Sat (11 AM – 9 PM PKT)</p>
             </div>
 
-            {/* Social Pill Links */}
-            <div className="flex items-center gap-3 pt-3">
-              <a
-                href="https://www.instagram.com/galleriaarts.co/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs ${
-                  isDarkMode
-                    ? 'bg-[#0C1623]/60 text-slate-200 border border-white/10 hover:bg-[#C5A059] hover:text-[#0C1623]'
-                    : 'bg-white text-[#0C1623] border border-[#E6DFC4] hover:bg-[#0C1623] hover:text-white'
-                }`}
-                aria-label="Instagram"
-              >
-                <Camera className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61591824065745"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs ${
-                  isDarkMode
-                    ? 'bg-[#0C1623]/60 text-slate-200 border border-white/10 hover:bg-[#3b5998] hover:text-white'
-                    : 'bg-white text-[#0C1623] border border-[#E6DFC4] hover:bg-[#3b5998] hover:text-white'
-                }`}
-                aria-label="Facebook"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
-                </svg>
-              </a>
-              <a
-                href="https://wa.me/923001234567"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-xs ${
-                  isDarkMode
-                    ? 'bg-[#0C1623]/60 text-slate-200 border border-white/10 hover:bg-[#25D366] hover:text-white'
-                    : 'bg-white text-[#0C1623] border border-[#E6DFC4] hover:bg-[#25D366] hover:text-white'
-                }`}
-                aria-label="WhatsApp"
-              >
-                <span className="font-bold text-xs">WA</span>
-              </a>
+            {/* Follow Us Speech Bubble Badge & Social Links */}
+            <div className="pt-2">
+              <FollowUsBadge
+                isDarkMode={isDarkMode}
+                align="left"
+                showWhatsApp={true}
+                facebookUrl="https://www.facebook.com/profile.php?id=61591824065745"
+                instagramUrl="https://www.instagram.com/galleriaarts.co/"
+                whatsappNumber="923001234567"
+              />
             </div>
           </ScrollReveal>
 

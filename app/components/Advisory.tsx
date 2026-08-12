@@ -6,6 +6,7 @@ import { Award, Sparkles, Sliders, Truck, Headphones, Camera, ArrowRight } from 
 import ScrollReveal from './ScrollReveal';
 import CharReveal from './CharReveal';
 import LightBeamButton from './LightBeamButton';
+import FollowUsBadge from './FollowUsBadge';
 
 interface AdvisoryProps {
   isDarkMode: boolean;
@@ -249,13 +250,14 @@ export default function Advisory({ isDarkMode, triggerToast, instaPosts }: Advis
               </p>
             </div>
 
-            <div>
-              <LightBeamButton
-                onClick={() => window.open("https://www.instagram.com/galleriaarts.co/", "_blank", "noopener,noreferrer")}
-              >
-                <Camera className="w-4 h-4" />
-                <span>Follow @galleriaarts</span>
-              </LightBeamButton>
+            <div className="flex flex-col sm:items-end">
+              <FollowUsBadge
+                isDarkMode={isDarkMode}
+                align="center"
+                showWhatsApp={false}
+                facebookUrl="https://www.facebook.com/profile.php?id=61591824065745"
+                instagramUrl="https://www.instagram.com/galleriaarts.co/"
+              />
             </div>
           </ScrollReveal>
 
