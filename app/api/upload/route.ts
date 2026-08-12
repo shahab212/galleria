@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
     image.composite(watermark, x, y);
 
     // 8. Convert to original mime-type and write file to local disk
-    const mime = image.mime;
+    const mime = (image.mime || 'image/jpeg') as 'image/jpeg' | 'image/png' | 'image/bmp' | 'image/tiff' | 'image/gif';
     const processedBuffer = await image.getBuffer(mime);
     await fs.writeFile(filePath, processedBuffer);
 
