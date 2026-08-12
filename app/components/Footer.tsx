@@ -108,7 +108,7 @@ export default function Footer({ isDarkMode, triggerToast }: FooterProps) {
               <FollowUsBadge
                 isDarkMode={isDarkMode}
                 align="left"
-                showWhatsApp={true}
+                showWhatsApp={false}
                 facebookUrl="https://www.facebook.com/profile.php?id=61591824065745"
                 instagramUrl="https://www.instagram.com/galleriaarts.co/"
                 whatsappNumber="923001234567"
